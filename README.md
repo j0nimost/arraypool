@@ -24,12 +24,14 @@ The above benchmark is included in the test, it compares a normal slice vs an ar
 ```go
 // initialize an array pool instance, make it global 
 var ap ArrayPool[int] = ArrayPool[int]{}
-// create an instance of a buffer
-var apbuffer *ArrayPoolBuffer[int] = ap.New()
-// get an instance of the buffer
 
 func methodThatCreateAlotofSlices() {
-  apbuffer = ap.Get()
+
+  // create an instance of a buffer do this once;
+  apbuffer:= ap.New()
+  // or 
+  // get an exisiting buffer
+  apbuffer := ap.Get()
   // put back in the pool after use, also a flag to resize
   // ... do work with the array
   //

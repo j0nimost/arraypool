@@ -1,4 +1,6 @@
 ## ArrayPool
+![go build workflow](https://github.com/j0nimost/arraypool/actions/workflows/go.yml/badge.svg)
+
 A fast implementation of generic reusable buffers. Uses `sync.pool` under the hood.
 
 When creating and disposing arrays is an expensive operation. `ArrayPool[T any]` allows you to

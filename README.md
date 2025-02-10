@@ -7,6 +7,10 @@ A fast implementation of generic reusable buffers. Uses `sync.pool` under the ho
 When creating and disposing arrays is an expensive operation. `ArrayPool[T any]` allows you to
 create buffers that can be used across the application lifecycle. 
 
+- Installation
+  `go get github.com/j0nimost/arraypool`
+- Supported Version 
+  go >= 1.21
 - Benchmark
 ```txt
 goos: linux
@@ -28,16 +32,15 @@ import ap "github.com/j0nimost/arraypool"
 var apool ap.ArrayPool[int] = ap.ArrayPool[int]{}
 
 func methodThatCreateAlotofSlices() {
-
   // create an instance of a buffer do this once;
   apbuffer:= apool.New()
   // or 
-  // get an exisiting buffer
+  // get an existing buffer from a global declaration
   apbuffer := apool.Get()
-  // put back in the pool after use, also a flag to resize
   // ... do work with the array
   //
   // 
+  // put back in the pool after use, also a flag to resize
   apool.Put(apbuffer, true)// the flag `true` means the underlying buffer's length is set to 0
 }
 ```

@@ -1,5 +1,6 @@
 ## ArrayPool
 ![go build workflow](https://github.com/j0nimost/arraypool/actions/workflows/go.yml/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/j0nimost/arraypool)](https://goreportcard.com/report/github.com/j0nimost/arraypool)
 
 A fast implementation of generic reusable buffers. Uses `sync.pool` under the hood.
 

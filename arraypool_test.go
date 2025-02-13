@@ -5,8 +5,8 @@ import (
 )
 
 func TestArrayPoolBasic(t *testing.T) {
-	ap := ArrayPool[int]{}
-	apbuffer := ap.New()
+	ap := NewPool[int]()
+	apbuffer := ap.Get()
 	if apbuffer == nil && len(apbuffer.Buffer) == defaultBufferCapacity {
 		t.Errorf("Result; ArrayPoolBuffer is nil or length does not match defaultCapacity")
 	}
@@ -18,7 +18,7 @@ func TestArrayPoolBasic(t *testing.T) {
 		t.Errorf("Result; Expected Buffer Length %d actually got %d", 10, len(apbuffer.Buffer))
 	}
 
-	apBuffer.ClearAll()
+	apbuffer.ClearAll()
 
 	if len(apbuffer.Buffer) != 10 {
 		t.Errorf("Result; Expected Buffer Length %d actually got %d", 10, len(apbuffer.Buffer))
@@ -33,9 +33,8 @@ func TestArrayPoolBasic(t *testing.T) {
 }
 
 func TestArrayPoolGet(t *testing.T) {
-	ap := ArrayPool[int]{}
-	// get with no initialization
-	apbuffer := ap.New()
+	ap := NewPool[int]()
+	apbuffer := ap.Get()
 	if apbuffer == nil {
 		t.Error("Result; ArrayPoolBuffer is nil")
 	}
@@ -54,10 +53,7 @@ func TestArrayPoolGet(t *testing.T) {
 }
 
 // benchmark against regular buffers
-var (
-	ap       ArrayPool[int]    = ArrayPool[int]{}
-	apBuffer *ArrayBuffer[int] = ap.New()
-)
+var ap *ArrayPool[int] = NewPool[int]()
 
 func ArrayPoolBenchTest() {
 	apBuffer := ap.Get()

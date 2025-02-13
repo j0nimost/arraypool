@@ -29,17 +29,15 @@ The above benchmark is included in the test, it compares a normal slice vs an ar
 ```go
 import ap "github.com/j0nimost/arraypool"
 // initialize an array pool instance, make it global 
-var apool ap.ArrayPool[int] = ap.ArrayPool[int]{}
+var apool *ap.ArrayPool[int] = ap.NewPool[int]() 
 
 func methodThatCreateAlotofSlices() {
-  // create an instance of a buffer do this once;
-  apbuffer:= apool.New()
-  // or 
   // get an existing buffer from a global declaration
   apbuffer := apool.Get()
   // ... do work with the array
   //
-  // 
+  // write to buffer 
+  apBuffer.Write(5)
   // put back in the pool after use, also a flag to resize
   apool.Put(apbuffer, true)// the flag `true` means the underlying buffer's length is set to 0
 }

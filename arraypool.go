@@ -13,7 +13,8 @@ type ArrayPool[T any] struct {
 }
 
 // create a new instance of pool
-func (ap *ArrayPool[T]) New() *ArrayBuffer[T] {
+func NewPool[T any]() *ArrayPool[T] {
+	ap := &ArrayPool[T]{}
 	ap.pool = sync.Pool{
 		New: func() any {
 			return &ArrayBuffer[T]{
@@ -21,8 +22,7 @@ func (ap *ArrayPool[T]) New() *ArrayBuffer[T] {
 			}
 		},
 	}
-
-	return ap.pool.Get().(*ArrayBuffer[T])
+	return ap
 }
 
 // get an existing instance from the pool. If it does not exist sync.pool creates one

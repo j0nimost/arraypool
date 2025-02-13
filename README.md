@@ -8,7 +8,7 @@ When creating and disposing arrays is an expensive operation. `ArrayPool[T any]`
 create buffers that can be used across the application lifecycle. 
 
 - Installation
-  `go get github.com/j0nimost/arraypool`
+  `go get github.com/j0nimost/arraypool/v2`
 - Supported Version 
   go >= 1.21
 - Benchmark

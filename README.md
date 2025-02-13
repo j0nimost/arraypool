@@ -32,7 +32,7 @@ import ap "github.com/j0nimost/arraypool"
 var apool *ap.ArrayPool[int] = ap.NewPool[int]() 
 
 func methodThatCreateAlotofSlices() {
-  // get an existing buffer from a global declaration
+  // get an existing or new buffer from a global declaration
   apbuffer := apool.Get()
   // ... do work with the array
   //

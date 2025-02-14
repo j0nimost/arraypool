@@ -27,7 +27,7 @@ The above benchmark is included in the test, it compares a normal slice vs an ar
 
 ### Usage
 ```go
-import ap "github.com/j0nimost/arraypool"
+import ap "github.com/j0nimost/arraypool/v2"
 // initialize an array pool instance, make it global 
 var apool *ap.ArrayPool[int] = ap.NewPool[int]() 
 
